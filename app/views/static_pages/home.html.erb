@@ -70,7 +70,9 @@
 <%= form_for :import , :url => url_for(:controller => 'import', :action => 'create'), :html => { :onsubmit => 'freshsales.trackEvent("CSV import- 200 records ")' } do |f| %>
    <%= f.label 'Number of rows' %><br />
   <%= f.text_field :file  %><br />
+  <div style="margin: 20px 0;">
   <%= f.submit %>
+  </div>
 <% end %> 
   </div>
 </div>
