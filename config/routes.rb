@@ -10,13 +10,19 @@ MarketingApp::Application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
-
- root to: 'static_pages#home'
+root to: 'static_pages#home'
   resources :users
   resources :sessions
   resources :import
   resources :export
   resources :generate_report
+  resources :products do
+    collection do
+     get 'add_item'
+     get 'add_wish'
+      get 'checkout'
+  end
+end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

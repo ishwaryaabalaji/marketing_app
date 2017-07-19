@@ -1,0 +1,59 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                  <%= image_tag("/logo.jpg",:class => "img-responsive img-rounded img_logo") %>
+                </a>
+            </div>
+            <div class="pull-right user-profile">
+                <a href="/users/<%=@id%>">
+                    <img src="/user.jpg">
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+
+
+<%= link_to image_tag("/checkout.jpg"), { :controller => "products", :action => "checkout"}, class: "pull-right"%>
+<ul class="nav nav-pills">
+  <li role="presentation" ><a href= "/static_pages/home">B2B </a></li>
+  <li role="presentation" class="active" ><a href="/products">B2C</a></li>
+</ul>
+
+
+ <div class="row text-center pricing-list">
+                <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail" > 
+                <%= image_tag(@product.image)%>
+                <div class="text-center">
+                    <ul class="list-unstyled">
+                        <li><%= @product.product_name %> </li>
+                        <li>by <%= @product.author_name %></li>
+                        <li> ₹ <%= @product.product_rate %></li>
+                    </ul>    
+                </div>
+                <div class="btn-group">
+                    <%= link_to "Add to cart", { :id => @product.id, :controller => "products", :action => "add_item"}, :class => "btn btn-primary" %>
+                <%= link_to "Add to wish list", { :id => @product.id,:controller => "products", :action => "add_wish"}, :class => "btn btn-default" %>
+                </div>
+                </div>   
+              </div>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+        <script> function createFcn(nm){(window.freshsales)[nm]=function(){(window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; } (function(url,appToken,formCapture){window.freshsales=window.freshsales||[];if(window.freshsales.length==0){list='init identify trackPageView trackEvent set'.split(' ');for(var i=0;i<list.length;i++){var nm=list[i];createFcn(nm);}var t=document.createElement('script');t.async=1;t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';var ft=document.getElementsByTagName('script')[0];ft.parentNode.insertBefore(t,ft);freshsales.init('//demo.freshsales.io','6dd322e49484d55d34e25f66cebc4b84',true);}})();</script>

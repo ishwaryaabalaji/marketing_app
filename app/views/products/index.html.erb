@@ -1,0 +1,72 @@
+
+
+<%= link_to image_tag("/checkout.jpg"), { :controller => "products", :action => "checkout"}, class: "pull-right"%>
+<ul class="nav nav-pills">
+  <li role="presentation" ><a href= "/static_pages/home" >B2B </a></li>
+  <li role="presentation" class="active" ><a href="/products">B2C</a></li>
+</ul>
+
+<% flash.each do |key, value| %>
+<% if value.present? %>
+        <%= content_tag :div, class: "alert alert-success" do %>
+      <%= value %>
+      <%= link_to products_path, :class => "close", :"data-dismiss" => "alert", :"aria-label" => "Close" do %>
+        <span aria-hidden="true">&times;</span>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                  <%= image_tag("/logo.jpg",:class => "img-responsive img-rounded img_logo") %>
+                </a>
+            </div>
+            <div class="pull-right user-profile">
+                <a href="/users/<%=@id%>">
+                    <img src="/user.jpg">
+                </a>
+            </div>
+
+        </div>
+    </nav>
+<!-- Page Features -->
+             <div class="row text-center pricing-list">
+            <% @products.each do |product| %> 
+                <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail" > 
+                 <%= link_to image_tag(product.image),
+                product_path(product.id), :class => 'img-responsive' %>
+                <div class="text-center">
+                    <ul class="list-unstyled">
+                        <li><%= product.product_name %> </li>
+                        <li>by <%= product.author_name %></li>
+                        <li> ₹ <%= product.product_rate %></li>
+                    </ul>    
+                </div>
+                <div class="btn-group">
+                    <%= link_to "Add to cart", { :id => product.id, :controller => "products", :action => "add_item"}, :class => "btn btn-primary" %>
+                <%= link_to "Add to wish list", { :id => product.id,:controller => "products", :action => "add_wish"}, :class => "btn btn-default" %>
+                </div>
+                </div>
+                </div>   
+             <% end %> 
+              </div>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
